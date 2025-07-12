@@ -19,7 +19,7 @@ The result is a sophisticated, multi-stage implant with a corresponding Command 
 
 The RAT is comprised of two main components: the **Client (Implant)** and the **Server (C2)**.
 
-### Client-Side Implant (`rat_client_final.py`)
+### Client-Side Implant (`client.py`)
 
 The client is a standalone Windows executable (compiled from Python) designed to be the primary implant on a target machine. It features a state-based design to maximize stealth.
 
@@ -40,7 +40,7 @@ The client is a standalone Windows executable (compiled from Python) designed to
     *   **File Download (Exfiltration):** Download arbitrary files from the victim machine to the C2 server.
     *   **Encrypted Communication:** All communication with the C2 server (shell output, file chunks) is encrypted using a simple XOR cipher and then Base64 encoded to ensure safe transport over HTTP.
 
-### Server-Side Command & Control (`rat_server_http.py`)
+### Server-Side Command & Control (`server.py`)
 
 The C2 server is a Python Flask application that provides the attacker's user interface and the necessary web endpoints for the implant to communicate with.
 
@@ -53,7 +53,7 @@ The C2 server is a Python Flask application that provides the attacker's user in
 
 ## How it Works: The Attack Lifecycle
 
-1.  **Initial Access:** An attacker delivers the compiled `rat_client.exe` to the target (e.g., via a phishing email, a dropper, or physical access like a BadUSB).
+1.  **Initial Access:** An attacker delivers the compiled `client.exe` to the target (e.g., via a phishing email, a dropper, or physical access like a BadUSB).
 2.  **Execution & Persistence:** The user runs the executable. It prompts for UAC, gains admin rights, relocates itself, sets up the SYSTEM-level scheduled task, and deletes the original file.
 3.  **Dormant Phase:** The RAT is now persistent. On every reboot, it runs silently as SYSTEM and begins pinging the dead drop URL, waiting for a command.
 4.  **Activation:** The attacker wishes to take control. They start their `rat_server.py` and a forwarding service (like a Dev Tunnel or a VPS redirector) to get a public URL. They place this URL into the dead drop file.

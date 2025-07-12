@@ -1,5 +1,5 @@
 
-# Project: Python RAT - A Custom Remote Access Tool for Windows
+RAT - A Python based Custom Remote Access Tool for Windows
 
 **Author:** [Abhishek / xero47]  
 **Status:** Educational / Proof of Concept

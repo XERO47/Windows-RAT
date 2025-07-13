@@ -6,12 +6,12 @@
 
 ## ⚠️ Disclaimer
 
-This project was undertaken strictly for **educational and research purposes**. The goal was to deepen my understanding of Python programming, Windows internals, networking, and modern cybersecurity principles (both offensive tradecraft and defensive strategies).
+This project is undertaken strictly for **educational and research purposes**. The goal is to deepen my understanding of Python programming, Windows internals, networking, and modern cybersecurity principles (both offensive tradecraft and defensive strategies).
 
 The software developed here is a functional Remote Access Tool (RAT).
 ## Overview
 
-This project is my attempt at building a custom Remote Access Tool for Windows from the ground up using Python. My objective was to move beyond simple scripts and tackle a project that encompasses a wide range of real-world cybersecurity challenges. I wanted to build not just the tool itself, but to understand the "cat-and-mouse" game between an implant and system defenses.
+This project is my attempt at building a custom Remote Access Tool for Windows from the ground up using Python. My objective is to move beyond simple scripts and tackle a project that encompasses a wide range of real-world cybersecurity challenges. I wanted to build not just the tool itself, but to understand the "cat-and-mouse" game between an implant and system defenses.
 
 The result is a sophisticated, multi-stage implant with a corresponding Command & Control (C2) server. The design mimics the architecture of modern malware, prioritizing stealth, persistence, and functionality.
 
@@ -62,11 +62,11 @@ The C2 server is a Python Flask application that provides the attacker's user in
 
 ## Personal Learnings & Future Improvements
 
-This project was an incredible learning experience. Key takeaways include:
+This project is an incredible learning experience. Key takeaways include:
 
 *   **The Importance of Layers:** A simple reverse shell is easy to detect. Real-world effectiveness comes from layering techniques: persistence, UAC bypass, relocation, state-based C2, and encryption.
 *   **Thinking Defensively:** At every step, I had to consider how a Blue Team would detect my tool. This forced me to implement features like jitter, masquerading, and anti-forensics.
-*   **Windows Internals:** Gaining a practical understanding of Scheduled Tasks, the Registry, and the Windows API (`ctypes`) was invaluable.
+*   **Windows Internals:** Gaining a practical understanding of Scheduled Tasks, the Registry, and the Windows API (`ctypes`) is invaluable.
 
 **Potential future improvements could include:**
 

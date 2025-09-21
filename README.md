@@ -4,11 +4,7 @@
 **Author:** [Abhishek / xero47]  
  Proof of Concept
 
-## ⚠️ Disclaimer
 
-This project is undertaken strictly for **educational and research purposes**. The goal is to deepen my understanding of Python programming, Windows internals, networking, and modern cybersecurity principles (both offensive tradecraft and defensive strategies).
-
-The software developed here is a functional Remote Access Tool (RAT).
 ## Overview
 
 This project is my attempt at building a custom Remote Access Tool for Windows from the ground up using Python. My objective is to move beyond simple scripts and tackle a project that encompasses a wide range of real-world cybersecurity challenges. I wanted to build not just the tool itself, but to understand the "cat-and-mouse" game between an implant and system defenses.
@@ -59,3 +55,10 @@ The C2 server is a Python Flask application that provides the attacker's user in
 4.  **Activation:** The attacker wishes to take control. They start their `rat_server.py` and a forwarding service (like a Dev Tunnel or a VPS redirector) to get a public URL. They place this URL into the dead drop file.
 5.  **Active C2 Session:** The client fetches the URL, connects to the C2 server, and enters a fast-polling active state. The attacker now has a fully interactive shell and file transfer capabilities.
 6.  **Going Dark:** The attacker finishes their session and shuts down their C2 server. The client detects the connection loss and reverts to the dormant, low-profile state.
+
+
+
+
+This project is undertaken strictly for **educational and research purposes**. The goal is to deepen my understanding of Python programming, Windows internals, networking, and modern cybersecurity principles (both offensive tradecraft and defensive strategies).
+
+The software developed here is a functional Remote Access Tool (RAT).

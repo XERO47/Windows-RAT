@@ -51,7 +51,7 @@ The C2 server is a Python Flask application that provides the attacker's user in
     *   Manages incoming file transfers from the victim, reassembling encrypted chunks and saving the final file to a `downloads` directory.
 *   **Stealthy Endpoints:** Uses generic-looking API endpoints (`/get_command`, `/send_results`, `/get_chunk`, etc.) to handle C2 communication.
 
-## How it Works: The Attack Lifecycle
+## Attack Lifecycle
 
 1.  **Initial Access:** An attacker delivers the compiled `client.exe` to the target (e.g., via a phishing email, a dropper, or physical access like a BadUSB).
 2.  **Execution & Persistence:** The user runs the executable. It prompts for UAC, gains admin rights, relocates itself, sets up the SYSTEM-level scheduled task, and deletes the original file.
@@ -59,18 +59,3 @@ The C2 server is a Python Flask application that provides the attacker's user in
 4.  **Activation:** The attacker wishes to take control. They start their `rat_server.py` and a forwarding service (like a Dev Tunnel or a VPS redirector) to get a public URL. They place this URL into the dead drop file.
 5.  **Active C2 Session:** The client fetches the URL, connects to the C2 server, and enters a fast-polling active state. The attacker now has a fully interactive shell and file transfer capabilities.
 6.  **Going Dark:** The attacker finishes their session and shuts down their C2 server. The client detects the connection loss and reverts to the dormant, low-profile state.
-
-## Personal Learnings & Future Improvements
-
-This project is an incredible learning experience. Key takeaways include:
-
-*   **The Importance of Layers:** A simple reverse shell is easy to detect. Real-world effectiveness comes from layering techniques: persistence, UAC bypass, relocation, state-based C2, and encryption.
-*   **Thinking Defensively:** At every step, I had to consider how a Blue Team would detect my tool. This forced me to implement features like jitter, masquerading, and anti-forensics.
-*   **Windows Internals:** Gaining a practical understanding of Scheduled Tasks, the Registry, and the Windows API (`ctypes`) is invaluable.
-
-**Potential future improvements could include:**
-
-*   **Process Injection:** Implementing the ability to inject the RAT's shellcode into a legitimate process (e.g., `explorer.exe`) to hide from basic process list analysis.
-*   **In-Memory Execution:** Modifying the client to download and execute second-stage tools entirely in memory without ever writing them to disk.
-*   **More Robust Encryption:** Replacing the simple XOR cipher with a standard, strong cryptographic protocol like TLS, implemented directly or through a library like PyOpenSSL.
-*   **Domain Fronting:** Evolving the dead drop mechanism to use a more advanced technique like domain fronting for even greater network stealth.

